@@ -11,18 +11,16 @@ class Bank(Thread):
 
 
     def deposit(self):
-        print(f'На депозите {self.balance} средств') # проверка количества средств
+        print(f'На депозите {self.balance} средств')
 
         for i in range(100):
-            dep = random.randint(50, 500) # случайное число (сумма пополнения)
+            dep = random.randint(50, 500)
             self.balance += dep
             print(f'Пополнение: {dep}. Баланс: {self.balance}')
 
             if self.balance >= 500 and self.lock.locked():
                 self.lock.release()
                 print(f'Пополнен: {dep}. Баланс: {self.balance}')
-            # else:
-            #     print(f'депозит закрыт на снятие, Баланс меньше 500')
     sleep(0.001)
 
     def take(self):
